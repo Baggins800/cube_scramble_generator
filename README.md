@@ -1,6 +1,6 @@
 # Cube Scramble Generator
 ## Overview
-Cube is a simple yet effective scramble generator for 2x2 and 3x3 Rubik's Cubes (3x3 is the default), written in Rust. It ensures no two consecutive moves are the same, providing an unpredictable and challenging scramble.
+Cube is a simple yet effective scramble generator for 2x2, 3x3, 4x4 and 5x5 Rubik's Cubes (3x3 is the default), written in Rust. It ensures no two consecutive moves are the same, providing an unpredictable and challenging scramble.
 ## Functionality
 Cube's core function, `generate_scramble`, generates a random sequence of moves. The moves are denoted as "R", "L", "B", "F", "U", "D", "", "'", "2" corresponding to Right, Left, Back, Front, Up, Down, none, counter-clockwise (prime), and a 180-degree turn respectively. For the 2x2 only "R", "F" and "U" is used.
 The scramble generator ensures that the same move is not repeated consecutively. By default, the generator outputs 20 moves for 3x3 and 9 for 2x2. However, you can customize this by using the `-c` or `--count` argument when running the program.

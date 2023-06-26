@@ -8,6 +8,8 @@ fn generate_scramble(arg: Option<u32>, cube_type: Option<String>) -> Vec<String>
     None => match cube_type.as_deref() {
         Some("2x2") => 9,
         Some("3x3") => 20,
+        Some("4x4") => 46,
+        Some("5x5") => 60,
         Some(&_) => 20,
         None => 20
     },
@@ -15,11 +17,17 @@ fn generate_scramble(arg: Option<u32>, cube_type: Option<String>) -> Vec<String>
   let notationrange = match cube_type.as_deref() {
         Some("2x2") => 3,
         Some("3x3") => 6,
+        Some("4x4") => 9,
+        Some("5x5") => 12,
         Some(&_) => 6,
         None => 6
     };
 
-  let notations = vec!["R", "F", "U", "L", "B", "D"];
+  let notations = vec!["R", "F", "U", // 2x2
+    "L", "B", "D", // 3x3
+    "Rw", "Fw", "Uw", // 4x4
+    "Bw", "Lw", "Dw" // 5x5
+  ];
   let extras = vec!["", "'", "2"];
   let mut rand_generator = rand::thread_rng();
   let mut last_notation: Option<u32> = None;
@@ -57,11 +65,11 @@ fn main() {
   let mut cube_type: Option<String> = None;
   {
     let mut parser = ArgumentParser::new();
-    parser.set_description("2x2 and 3x3 scramble generator");
+    parser.set_description("2x2, 3x3, 4x4 and 5x5 scramble generator");
     parser.refer(&mut n)
         .add_option(&["-c", "--count"], StoreOption, "Set the number of notations.");
     parser.refer(&mut cube_type)
-        .add_option(&["-t", "--type"], StoreOption, "Set the cube type, 2x2 or 3x3");
+        .add_option(&["-t", "--type"], StoreOption, "Set the cube type, 2x2, 3x3, 4x4 or 5x5");
     parser.parse_args_or_exit();
   }
   println!("{}", generate_scramble(n, cube_type).join(" "));
