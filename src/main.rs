@@ -1,6 +1,6 @@
 extern crate argparse;
 use argparse::{ArgumentParser, StoreOption};
-use cube::generate_scramble;
+use cube_scrambler::generate_scramble;
 
 fn main() {
     let mut n: Option<u32> = None;
