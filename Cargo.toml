@@ -1,6 +1,6 @@
 [package]
 name = "cube_scrambler"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 author = ["Ruan Luies <omega@live.co.za>"]
 description = "Cube is a simple yet effective scramble generator for 2x2, 3x3, 4x4 and 5x5 Rubik's Cubes (3x3 is the default), written in Rust. It ensures no two consecutive moves are the same, providing an unpredictable and challenging scramble."

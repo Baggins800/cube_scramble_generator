@@ -51,4 +51,3 @@ pub fn generate_scramble(arg: Option<u32>, cube_type: Option<String>) -> Vec<Str
         })
     .collect()
 }
-
