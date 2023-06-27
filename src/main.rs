@@ -31,32 +31,23 @@ fn generate_scramble(arg: Option<u32>, cube_type: Option<String>) -> Vec<String>
   let extras = vec!["", "'", "2"];
   let mut rand_generator = rand::thread_rng();
   let mut last_notation: Option<u32> = None;
-  let selected_notations: Vec<u32> = range.clone()
+  let selected_notations: Vec<(u32, u32)> = range
     .map(|_| {
-        let mut selected = rand_generator.gen_range(0..notationrange as u32);
-        while Some(selected) == last_notation {
-          selected = rand_generator.gen_range(0..notationrange as u32);
+        let mut selected_notation = rand_generator.gen_range(0..notationrange as u32);
+        let selected_extra = rand_generator.gen_range(0..extras.len() as u32);
+        while Some(selected_notation) == last_notation {
+          selected_notation = rand_generator.gen_range(0..notationrange as u32);
         }
-        last_notation = Some(selected);
-        selected
+        last_notation = Some(selected_notation);
+        (selected_notation, selected_extra)
     })
     .collect();
-
-  let mut last_extra: Option<u32> =  None;
-  let selected_extras: Vec<u32> = range.clone()
-    .map(|_| {
-      let mut selected = rand_generator.gen_range(0..extras.len() as u32);
-      while Some(selected) == last_extra {
-        selected = rand_generator.gen_range(0..extras.len() as u32);
-      }
-      last_extra = Some(selected);
-      selected
-    }).collect();
-  let result: Vec<String> = range
-    .map(|x| {
-      format!("{}{}", notations[selected_notations[(x - 1) as usize] as usize].to_string(),
-      extras[selected_extras[(x - 1) as usize] as usize].to_string())
-    }).collect();
+  let result: Vec<String> = selected_notations
+      .into_iter()
+      .map(|(x, y)| {
+        format!("{}{}", notations[x as usize], extras[y as usize])
+      })
+      .collect();
   return result;
 }
 
