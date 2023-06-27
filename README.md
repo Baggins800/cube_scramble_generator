@@ -13,7 +13,7 @@ cargo build --release
 ### Running the Program
 You can run the program with the following command:
 ```sh
-./target/release/cube -c 25
+./target/release/cube_scrambler -c 25
 ```
 This generates a scramble of 25 moves. If you don't specify the `-c` or `--count` option, the program defaults to generating 20 moves.
 ## Dependencies
