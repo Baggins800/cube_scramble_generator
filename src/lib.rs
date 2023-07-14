@@ -25,9 +25,9 @@ fn cube_settings(cube_type: Option<String>)
             "3Rw", "3Fw", "3Uw", // 6x6
             "3Bw", "3Lw", "3Dw"  // 7x7
             ]))
-    }
+}
 
-pub fn generate_scramble(arg: Option<u32>, cube_type: Option<String>) 
+pub fn generate_regular_scramble(arg: Option<u32>, cube_type: Option<String>) 
     -> Result<Vec<String>, &'static str> {
         let (notation_range, count, notations) = 
             match cube_settings(cube_type) {
@@ -62,4 +62,18 @@ pub fn generate_scramble(arg: Option<u32>, cube_type: Option<String>)
                format!("{}{}", notations[x as usize], extras[y as usize])
            })
            .collect())
-    }
+}
+
+pub fn generate_scramble(arg: Option<u32>, cube_type: Option<String>)
+    -> Result<Vec<String>, &'static str> {
+  match cube_type.as_deref() {
+    None |
+    Some("2x2") |
+    Some("3x3") |
+    Some("4x4") |
+    Some("5x5") |
+    Some("6x6") |
+    Some("7x7") => generate_regular_scramble(arg, cube_type),
+    Some(_) => Err("Invalid Cube")
+  }
+}

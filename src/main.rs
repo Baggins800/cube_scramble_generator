@@ -14,6 +14,7 @@ fn main() {
             .add_option(&["-t", "--type"], StoreOption, "Set the cube type, 2x2, 3x3, 4x4 or 5x5");
         parser.parse_args_or_exit();
     }
+
     match generate_scramble(n, cube_type) {
         Ok(scramble) => println!("{}", scramble.join(" ")),
         Err(e) => {
