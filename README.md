@@ -1,4 +1,4 @@
-# Cube Scramble Generator
+# Cube Scramble Generator [![Rust](https://github.com/Baggins800/cube_scramble_generator/actions/workflows/rust.yml/badge.svg)](https://github.com/Baggins800/cube_scramble_generator/actions/workflows/rust.yml)
 ## Overview
 Cube Scrabler is a simple yet effective scramble generator for 2x2, 3x3, 4x4, 5x5, 6x6 and 7x7 Rubik's Cubes (3x3 is the default), written in Rust. It ensures no two consecutive moves are the same, providing an unpredictable and challenging scramble.
 ## Functionality
